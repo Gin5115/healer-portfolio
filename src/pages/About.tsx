@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { Briefcase, GraduationCap, Calendar, Cpu, ArrowRight } from 'lucide-react';
+import { Briefcase, GraduationCap, Calendar, ArrowRight } from 'lucide-react';
 import { TechStack } from '../components/TechStack';
 import { DetailModal, type DetailData } from '../components/DetailModal';
 

@@ -1,5 +1,5 @@
 import { X, Calendar, ExternalLink } from 'lucide-react';
-import { useEffect, useState } from 'react';
+
 
 export interface DetailData {
     title: string;
