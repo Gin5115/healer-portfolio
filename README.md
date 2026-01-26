@@ -156,4 +156,3 @@ The app will launch at `http://localhost:5173`.
 -   **Icons**: We use `lucide-react`. Explore their [icon library](https://lucide.dev/icons) for more options.
 
 ---
-*Created with ❤️ by Antigravity*
