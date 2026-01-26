@@ -23,10 +23,12 @@ const getTagColor = (tag: string) => {
     return 'bg-slate-500/10 border border-slate-500/20 text-slate-600 dark:text-slate-300'; // Default
 };
 
+import { createPortal } from 'react-dom';
+
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
     if (!isOpen || !project) return null;
 
-    return (
+    return createPortal(
         <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-[length:var(--bg-overlay,rgba(0,0,0,0.75))] backdrop-blur-sm p-4 animate-fade-in"
             style={{ backgroundColor: 'var(--bg-overlay)' }}
@@ -95,6 +97,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
