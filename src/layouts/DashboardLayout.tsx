@@ -8,16 +8,16 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
     return (
-        <div className="relative flex h-screen w-full overflow-hidden">
+        <div className="flex min-h-screen bg-content text-text-main font-sans selection:bg-primary/30 overflow-x-hidden">
             <ParticleBackground />
-            <div className="relative z-10 flex h-full w-full">
-                <Sidebar />
-                <main className="flex-1 h-full overflow-y-auto overflow-x-hidden relative">
-                    <div className="w-full min-h-full p-8">
-                        {children}
-                    </div>
-                </main>
-            </div>
+
+            <Sidebar />
+
+            <main className="flex-1 min-h-screen p-4 md:p-8 transition-all duration-300 relative z-10 w-full">
+                <div className="container mx-auto max-w-6xl animate-fade-in">
+                    {children}
+                </div>
+            </main>
         </div>
     );
 }
