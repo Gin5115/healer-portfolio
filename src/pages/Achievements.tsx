@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { Award, Medal, Trophy, Scroll, Star } from 'lucide-react';
+import { Award, Medal, Trophy, Scroll, Star, ArrowRight } from 'lucide-react';
 import { DetailModal } from '../components/DetailModal';
 import type { DetailData } from '../components/DetailModal';
 
@@ -83,7 +83,11 @@ export function Achievements() {
                 )}
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-text-muted mt-auto pt-2">
+            <div className="mt-auto pt-2 text-sm font-bold text-primary hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                View Details <ArrowRight size={14} />
+            </div>
+
+            <div className="flex items-center gap-2 text-xs text-text-muted pt-2 border-t border-border-color/50 mt-2">
                 {icon}
                 <span>{item.date}</span>
             </div>

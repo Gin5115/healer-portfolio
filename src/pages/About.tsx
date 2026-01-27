@@ -125,8 +125,8 @@ export function About() {
                                 <span className="text-xs text-text-muted">{edu.period}</span>
                             </div>
                             <p className="text-sm text-text-muted mt-2 border-t border-border-color pt-3 line-clamp-2">{edu.details}</p>
-                            <div className="mt-auto pt-2 flex items-center text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                                View Details <ArrowRight size={12} className="ml-1" />
+                            <div className="mt-auto pt-2 text-sm font-bold text-primary hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                                View Details <ArrowRight size={14} />
                             </div>
                         </div>
                     ))}
@@ -165,8 +165,8 @@ export function About() {
                                 <span>{exp.type}</span>
                             </div>
                             <p className="text-sm leading-relaxed text-text-muted mt-1 line-clamp-2">{exp.description}</p>
-                            <div className="mt-1 flex items-center text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                                Read More <ArrowRight size={12} className="ml-1" />
+                            <div className="mt-1 text-sm font-bold text-primary hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                                View Details <ArrowRight size={14} />
                             </div>
                         </div>
                     ))}

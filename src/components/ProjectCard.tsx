@@ -46,8 +46,8 @@ export function ProjectCard({ title, description, tags, image_url, demo_link, re
                 <div className="mb-4 flex-1">
                     <h3 className="mb-2 text-lg font-bold text-text-main group-hover:text-primary transition-colors">{title}</h3>
                     <p className="line-clamp-2 text-sm leading-relaxed text-text-muted">{description}</p>
-                    <button className="mt-2 text-xs font-bold text-primary hover:text-blue-400 transition-colors">
-                        Read More →
+                    <button className="mt-auto pt-2 text-sm font-bold text-primary hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                        View Details <Eye size={14} />
                     </button>
                 </div>
                 <div className="mb-6 flex flex-wrap gap-2">

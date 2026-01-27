@@ -13,7 +13,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
             <Sidebar />
 
-            <main className="flex-1 min-h-screen p-4 md:p-8 transition-all duration-300 relative z-10 w-full">
+            <main className="flex-1 min-h-screen p-4 md:p-8 transition-all duration-300 relative z-10 w-full md:ml-[250px]">
                 <div className="container mx-auto max-w-6xl animate-fade-in">
                     {children}
                 </div>

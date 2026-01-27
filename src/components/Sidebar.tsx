@@ -83,7 +83,7 @@ export function Sidebar() {
             <aside
                 className={`
                     fixed inset-y-0 left-0 z-40 w-[250px] bg-sidebar border-r border-border-color transition-transform duration-300 ease-in-out h-screen overflow-hidden
-                    md:static md:translate-x-0
+                    md:translate-x-0
                     ${isOpen ? 'translate-x-0' : '-translate-x-full'}
                 `}
             >
