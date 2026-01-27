@@ -14,19 +14,20 @@ export interface Project {
 }
 
 // Helper to get tag color styles
+// Helper to get tag color styles
 const getTagColor = (tag: string) => {
     const t = tag.toLowerCase();
     if (t.includes('flutter') || t.includes('dart') || t.includes('react') || t.includes('js') || t.includes('javascript') || t.includes('node')) {
-        return 'bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-300';
+        return 'bg-blue-500/10 border border-blue-500/20 text-blue-500';
     }
     if (t.includes('iot') || t.includes('esp32')) {
-        return 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300';
+        return 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-500';
     }
     if (t.includes('python') || t.includes('django') || t.includes('flask')) {
-        return 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-600 dark:text-yellow-300';
+        return 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-500';
     }
 
-    return 'bg-slate-500/10 border border-slate-500/20 text-slate-600 dark:text-slate-300'; // Default
+    return 'bg-slate-500/10 border border-slate-500/20 text-text-muted'; // Default
 };
 
 export function ProjectCard({ title, description, tags, image_url, demo_link, repo_link, onClick }: Project) {
@@ -35,7 +36,7 @@ export function ProjectCard({ title, description, tags, image_url, demo_link, re
             className="group relative flex flex-col overflow-hidden rounded-xl border border-border-color bg-card shadow-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 cursor-pointer"
             onClick={onClick}
         >
-            <div className="aspect-video w-full overflow-hidden bg-slate-800">
+            <div className="aspect-video w-full overflow-hidden bg-primary/5">
                 <div
                     className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url('${image_url}')` }}

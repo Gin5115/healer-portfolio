@@ -8,19 +8,20 @@ interface ProjectModalProps {
 }
 
 // Helper to get tag color styles (reused from ProjectCard - ideally refactor to util)
+// Helper to get tag color styles (reused from ProjectCard - ideally refactor to util)
 const getTagColor = (tag: string) => {
     const t = tag.toLowerCase();
     if (t.includes('flutter') || t.includes('dart') || t.includes('react') || t.includes('js') || t.includes('javascript') || t.includes('node')) {
-        return 'bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-300';
+        return 'bg-blue-500/10 border border-blue-500/20 text-blue-500';
     }
     if (t.includes('iot') || t.includes('esp32')) {
-        return 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300';
+        return 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-500';
     }
     if (t.includes('python') || t.includes('django') || t.includes('flask')) {
-        return 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-600 dark:text-yellow-300';
+        return 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-500';
     }
 
-    return 'bg-slate-500/10 border border-slate-500/20 text-slate-600 dark:text-slate-300'; // Default
+    return 'bg-slate-500/10 border border-slate-500/20 text-text-muted'; // Default
 };
 
 import { createPortal } from 'react-dom';
@@ -47,7 +48,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 </button>
 
                 {/* Header Image */}
-                <div className="h-48 sm:h-64 w-full bg-slate-800 shrink-0">
+                <div className="h-48 sm:h-64 w-full bg-primary/5 shrink-0">
                     <div
                         className="h-full w-full bg-cover bg-center"
                         style={{ backgroundImage: `url('${project.image_url}')` }}

@@ -112,7 +112,7 @@ export function Sidebar() {
                                 {profile?.status_text || 'Open to Work'}
                             </div>
                             {profile?.learning_text && (
-                                <div className="text-[10px] uppercase tracking-wider text-text-muted bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md w-fit border border-border-color whitespace-normal break-words leading-tight">
+                                <div className="text-[10px] uppercase tracking-wider text-text-muted bg-card px-2 py-1 rounded-md w-fit border border-border-color whitespace-normal break-words leading-tight">
                                     {profile.learning_text}
                                 </div>
                             )}
@@ -124,35 +124,35 @@ export function Sidebar() {
                         <NavLink
                             to="/"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-slate-800/50 hover:text-text-main'}`}
+                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-primary/5 hover:text-text-main'}`}
                         >
                             <Home size={20} /> Home
                         </NavLink>
                         <NavLink
                             to="/about"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-slate-800/50 hover:text-text-main'}`}
+                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-primary/5 hover:text-text-main'}`}
                         >
                             <User size={20} /> About
                         </NavLink>
                         <NavLink
                             to="/projects"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-slate-800/50 hover:text-text-main'}`}
+                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-primary/5 hover:text-text-main'}`}
                         >
                             <FolderOpen size={20} /> Projects
                         </NavLink>
                         <NavLink
                             to="/achievements"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-slate-800/50 hover:text-text-main'}`}
+                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-primary/5 hover:text-text-main'}`}
                         >
                             <Award size={20} /> Achievements
                         </NavLink>
                         <NavLink
                             to="/contact"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-slate-800/50 hover:text-text-main'}`}
+                            className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary shadow-sm shadow-primary/5' : 'text-text-muted hover:bg-primary/5 hover:text-text-main'}`}
                         >
                             <Mail size={20} /> Contact
                         </NavLink>
@@ -203,13 +203,13 @@ export function Sidebar() {
                         </div>
 
                         {/* Theme Toggle */}
-                        <button onClick={toggleTheme} className="flex items-center justify-between rounded-lg bg-card border border-border-color p-2 cursor-pointer hover:bg-slate-800/50 transition-colors group">
+                        <button onClick={toggleTheme} className="flex items-center justify-between rounded-lg bg-card border border-border-color p-2 cursor-pointer hover:bg-primary/5 transition-colors group">
                             <div className="flex items-center gap-2">
                                 {isLight ? <Sun size={20} className="text-yellow-500" /> : <Moon size={20} className="text-primary" />}
                                 <span className="text-xs font-medium text-text-muted group-hover:text-text-main transition-colors">{isLight ? 'Light Mode' : 'Dark Mode'}</span>
                             </div>
-                            <div className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${isLight ? 'bg-slate-300' : 'bg-primary'}`}>
-                                <span className={`${isLight ? 'translate-x-1 bg-white' : 'translate-x-5 bg-white'} inline-block h-3.5 w-3.5 transform rounded-full transition-transform`}></span>
+                            <div className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${!isLight ? 'bg-primary' : 'bg-slate-500'}`}>
+                                <span className={`${!isLight ? 'translate-x-5 bg-white' : 'translate-x-1 bg-white'} inline-block h-3.5 w-3.5 transform rounded-full transition-transform`}></span>
                             </div>
                         </button>
                     </div>
