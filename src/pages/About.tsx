@@ -86,7 +86,7 @@ export function About() {
     };
 
     return (
-        <div className="max-w-3xl mx-auto w-full flex flex-col gap-12 pb-12">
+        <div className="max-w-4xl mx-auto w-full flex flex-col gap-12 pb-12">
             {/* Intro Section */}
             <div className="flex flex-col gap-4 border-b border-border-color pb-8">
                 <h2 className="text-3xl font-black text-text-main sm:text-4xl">About Me</h2>

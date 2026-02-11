@@ -176,7 +176,7 @@ export function Sidebar() {
                         <div className="flex justify-center gap-6 mb-2">
                             <a href="https://github.com/SathishKumar5115" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Github size={20} /></a>
                             <a href="https://www.linkedin.com/in/sathishkumar-r-981510246/" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Linkedin size={20} /></a>
-                            <a href="mailto:contact@example.com" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Mail size={20} /></a>
+                            <a href="mailto:rsathishkumar1963@gmail.com" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Mail size={20} /></a>
                         </div>
                     </div>
 

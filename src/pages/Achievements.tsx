@@ -129,7 +129,7 @@ export function Achievements() {
                 <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-3">
                         <Award className="text-yellow-500" size={24} />
-                        <h3 className="text-2xl font-bold text-text-main">Awards & Achievements</h3>
+                        <h3 className="text-2xl font-bold text-text-main">Awards & Honors</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {awards.map(item => renderCard(item, <Trophy size={12} />))}
@@ -142,7 +142,7 @@ export function Achievements() {
                 <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-3">
                         <Scroll className="text-emerald-500" size={24} />
-                        <h3 className="text-2xl font-bold text-text-main">Certifications</h3>
+                        <h3 className="text-2xl font-bold text-text-main">Certifications & Workshops</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {certifications.map(item => renderCard(item, <Scroll size={12} />))}
