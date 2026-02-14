@@ -1,17 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: 'class', // We will toggle the 'light' class manually
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+            },
             colors: {
+                background: 'var(--bg-background)',
                 sidebar: 'var(--bg-sidebar)',
-                content: 'var(--bg-content)',
                 card: 'var(--bg-card)',
+                'card-hover': 'var(--bg-card-hover)',
                 'text-main': 'var(--text-main)',
                 'text-muted': 'var(--text-muted)',
-                'border-color': 'var(--border-color)', // Use this for borders!
-                primary: '#1c5cf2', // Constant blue
+                'border-color': 'var(--border-color)',
+                primary: 'var(--color-accent)',
+            },
+            backdropBlur: {
+                xs: '2px',
             }
         }
     },

@@ -66,7 +66,7 @@ export function Achievements({ onSelect }: AchievementsProps) {
                             proofUrl: item.image_url,
                             tags: [item.category]
                         })}
-                        className="group flex flex-col gap-3 rounded-lg border border-border-color bg-card p-5 cursor-pointer hover:border-primary/50 hover:shadow-md transition-all sm:hover:translate-y-[-2px]"
+                        className="group flex flex-col gap-3 rounded-lg border border-border-color bg-[var(--bg-project-card)] backdrop-blur-md p-5 cursor-pointer hover:border-primary/50 hover:shadow-md transition-all sm:hover:translate-y-[-2px]"
                     >
                         <div className="flex justify-between items-start">
                             <div className="flex flex-col gap-1">

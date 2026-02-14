@@ -10,16 +10,18 @@ interface SectionWrapperProps {
 
 export function SectionWrapper({ children, id, className }: SectionWrapperProps) {
     return (
-        <section id={id} className={clsx("min-h-screen py-20 relative", className)}>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6 }}
-                className="w-full h-full"
-            >
-                {children}
-            </motion.div>
+        <section id={id} className={clsx("relative w-full min-h-screen flex items-center", className)}>
+            <div className="max-w-5xl mx-auto px-6 lg:px-12 py-20 w-full">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    className="w-full"
+                >
+                    {children}
+                </motion.div>
+            </div>
         </section>
     );
 }

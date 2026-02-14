@@ -1,26 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* DEFAULT: DARK MODE (Navy/Slate) */
+  /* THEME: DARK (Default / Classic Dashboard) */
+  --bg-background: #0f172a;
+  /* Slate 900 */
+  /* Slate 900 */
   --bg-sidebar: #0f172a;
-  --bg-content: #131b2e;
+
   --bg-card: #1e293b;
+  /* Slate 800 */
+  --bg-card-hover: #334155;
+  --bg-modal: #1e293b;
+
   --text-main: #ffffff;
   --text-muted: #94a3b8;
+  /* Slate 400 */
+
+  /* Blue 500 */
+  --color-accent: #3b82f6;
+  --color-accent-rgb: 59, 130, 246;
+
   --border-color: #334155;
-  /* Slate-700 for visibility against Slate-800 */
+  /* Slate 700 */
+
+  /* Slate 700 with opacity */
+  --bg-project-card: rgba(30, 41, 59, 0.6);
+
+  --backdrop-blur: 10px;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-.light {
-  /* LIGHT MODE PALETTE (Extracted from user HTML) */
-  --bg-sidebar: #f8fafc;
-  --bg-content: #ffffff;
+[data-theme="light"] {
+  /* THEME: LIGHT MODE */
+  --bg-background: #f8fafc;
+  /* Slate 50 */
+  --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
-  --text-main: #1e293b;
+  --bg-card-hover: #f1f5f9;
+  /* Slate 100 */
+  --bg-modal: #ffffff;
+
+  --text-main: #0f172a;
+  /* Slate 900 */
   --text-muted: #64748b;
+  /* Slate 500 */
+
+  --color-accent: #2563eb;
+  /* Blue 600 */
+  --color-accent-rgb: 37, 99, 235;
+
   --border-color: #e2e8f0;
+  /* Slate 200 */
+  --bg-project-card: rgba(255, 255, 255, 0.7);
+
+  --backdrop-blur: 0px;
+  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+[data-theme="neon"] {
+  /* THEME: PREMIUM NEON */
+  --bg-background: #0a0f1c;
+  /* Deep Navy */
+  --bg-sidebar: #0a0f1c;
+
+  --bg-card: rgba(17, 24, 39, 0.6);
+  --bg-card-hover: rgba(17, 24, 39, 0.8);
+  --bg-modal: #111827;
+  /* Fully opaque */
+
+  --text-main: #ffffff;
+  --text-muted: #9ca3b8;
+
+  --color-accent: #00E599;
+  /* Neon Mint */
+  --color-accent-rgb: 0, 229, 153;
+
+  --border-color: #1f2937;
+  --bg-project-card: rgba(17, 24, 39, 0.6);
+
+  --backdrop-blur: 12px;
+  --card-shadow: 0 0 15px rgba(0, 229, 153, 0.1);
 }
 
 html {
@@ -28,11 +91,13 @@ html {
 }
 
 body {
-  background-color: var(--bg-content);
+  background-color: var(--bg-background);
   color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar for Webkit */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -42,7 +107,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #334155;
+  background-color: var(--border-color);
   border-radius: 4px;
   border: 2px solid var(--bg-sidebar);
 }

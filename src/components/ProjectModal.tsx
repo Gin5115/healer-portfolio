@@ -8,21 +8,7 @@ interface ProjectModalProps {
 }
 
 // Helper to get tag color styles (reused from ProjectCard - ideally refactor to util)
-// Helper to get tag color styles (reused from ProjectCard - ideally refactor to util)
-const getTagColor = (tag: string) => {
-    const t = tag.toLowerCase();
-    if (t.includes('flutter') || t.includes('dart') || t.includes('react') || t.includes('js') || t.includes('javascript') || t.includes('node')) {
-        return 'bg-blue-500/10 border border-blue-500/20 text-blue-500';
-    }
-    if (t.includes('iot') || t.includes('esp32')) {
-        return 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-500';
-    }
-    if (t.includes('python') || t.includes('django') || t.includes('flask')) {
-        return 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-500';
-    }
-
-    return 'bg-slate-500/10 border border-slate-500/20 text-text-muted'; // Default
-};
+// Removed getTagColor as we are using single color now
 
 import { createPortal } from 'react-dom';
 
@@ -31,54 +17,59 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
     return createPortal(
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[length:var(--bg-overlay,rgba(0,0,0,0.75))] backdrop-blur-sm p-4 animate-fade-in"
-            style={{ backgroundColor: 'var(--bg-overlay)' }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in"
             onClick={onClose}
         >
             <div
-                className="relative w-full max-w-2xl bg-card border border-border-color rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+                className="relative w-full max-w-2xl bg-[var(--bg-modal)] border border-border-color rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
                 onClick={(e) => e.stopPropagation()} // Prevent close on card click
             >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    className="absolute top-4 right-4 z-10 p-2 rounded-full bg-card/80 hover:bg-card border border-border-color text-text-muted hover:text-primary transition-colors shadow-lg backdrop-blur-sm"
                 >
                     <X size={20} />
                 </button>
 
                 {/* Header Image */}
-                <div className="h-48 sm:h-64 w-full bg-primary/5 shrink-0">
+                <div className="h-48 sm:h-64 w-full bg-primary/5 shrink-0 relative">
                     <div
                         className="h-full w-full bg-cover bg-center"
                         style={{ backgroundImage: `url('${project.image_url}')` }}
                     ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-modal)] to-transparent pointer-events-none"></div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 md:p-8 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
-                    <div className="flex flex-col gap-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-text-main">{project.title}</h2>
+                <div className="p-6 md:p-8 flex flex-col gap-6 overflow-y-auto custom-scrollbar -mt-10 relative z-10">
+                    <div className="flex flex-col gap-3">
+                        <div className="flex justify-between items-start">
+                            <h2 className="text-2xl md:text-3xl font-black text-text-main tracking-tight">{project.title}</h2>
+                        </div>
+
                         <div className="flex flex-wrap gap-2">
                             {project.tags && project.tags.map((tag, index) => (
-                                <span key={index} className={`inline-flex items-center rounded px-2.5 py-1 text-xs font-semibold ${getTagColor(tag)}`}>
+                                <span key={index} className="inline-flex items-center rounded-md px-2.5 py-1 text-xs font-mono font-bold border bg-primary/10 border-primary/20 text-primary">
                                     {tag}
                                 </span>
                             ))}
                         </div>
                     </div>
 
-                    <p className="text-text-muted leading-relaxed text-base whitespace-pre-line">
-                        {project.description}
-                    </p>
+                    <div className="prose prose-invert max-w-none">
+                        <p className="text-text-muted leading-relaxed text-base whitespace-pre-line">
+                            {project.description}
+                        </p>
+                    </div>
 
-                    <div className="flex gap-4 mt-auto pt-4 border-t border-border-color">
+                    <div className="flex gap-4 mt-auto pt-6 border-t border-border-color">
                         {project.demo_link && (
                             <a
                                 href={project.demo_link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02] active:scale-95"
+                                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] active:scale-95 hover:shadow-primary/40"
                             >
                                 <Eye size={18} />
                                 Live Demo
@@ -89,10 +80,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                 href={project.repo_link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-border-color bg-transparent py-3 text-sm font-semibold text-text-main transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary"
+                                className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-border-color bg-card hover:bg-card-hover py-3.5 text-sm font-bold text-text-main transition-colors hover:border-primary/50 group"
                             >
-                                <Code2 size={18} />
-                                Source Code
+                                <Code2 size={18} className="group-hover:text-primary transition-colors" />
+                                <span className="group-hover:text-primary transition-colors">Source Code</span>
                             </a>
                         )}
                     </div>

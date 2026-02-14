@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Home, FolderOpen, User, Mail, FileText, Moon, Sun, Github, Linkedin, Users, Award, Menu, X } from 'lucide-react';
+import { Home, FolderOpen, User, Mail, FileText, Moon, Sun, Github, Linkedin, Zap, Award, Menu, X, Briefcase } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import clsx from 'clsx';
 
 export function Sidebar() {
-    const [isLight, setIsLight] = useState(false);
+    const [theme, setTheme] = useState<'classic' | 'neon' | 'light'>('neon');
     const [activeSection, setActiveSection] = useState('home');
     const [visitorCount, setVisitorCount] = useState<number>(0);
     const [profile, setProfile] = useState<any>(null);
@@ -12,14 +12,8 @@ export function Sidebar() {
 
     // Initialize theme
     useEffect(() => {
-        if (isLight) {
-            document.documentElement.classList.add('light');
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.remove('light');
-            document.documentElement.classList.add('dark');
-        }
-    }, [isLight]);
+        document.documentElement.setAttribute('data-theme', theme);
+    }, [theme]);
 
     // Fetch Data
     useEffect(() => {
@@ -59,7 +53,7 @@ export function Sidebar() {
             rootMargin: '-30% 0px -30% 0px'
         });
 
-        ['home', 'about', 'projects', 'achievements', 'contact'].forEach(id => {
+        ['home', 'about', 'background', 'projects', 'recognitions', 'contact'].forEach(id => {
             const element = document.getElementById(id);
             if (element) observer.observe(element);
         });
@@ -79,15 +73,38 @@ export function Sidebar() {
         }
     };
 
-    const toggleTheme = () => setIsLight(!isLight);
+    const toggleTheme = () => {
+        setTheme(current => {
+            if (current === 'classic') return 'neon';
+            if (current === 'neon') return 'light';
+            return 'classic';
+        });
+    };
 
     const navItems = [
         { id: 'home', label: 'Home', icon: Home },
         { id: 'about', label: 'About', icon: User },
+        { id: 'background', label: 'Background', icon: Briefcase },
         { id: 'projects', label: 'Projects', icon: FolderOpen },
-        { id: 'achievements', label: 'Achievements', icon: Award },
+        { id: 'recognitions', label: 'Recognitions', icon: Award },
         { id: 'contact', label: 'Contact', icon: Mail },
     ];
+
+    const getThemeIcon = () => {
+        switch (theme) {
+            case 'classic': return <Zap size={14} className="text-primary fill-current" />; // Next: Neon
+            case 'neon': return <Sun size={14} className="text-yellow-500 fill-current" />; // Next: Light
+            case 'light': return <Moon size={14} className="text-text-muted fill-current" />; // Next: Dark
+        }
+    };
+
+    const getThemeLabel = () => {
+        switch (theme) {
+            case 'classic': return 'Switch to Neon';
+            case 'neon': return 'Switch to Light';
+            case 'light': return 'Switch to Dark';
+        }
+    };
 
     return (
         <>
@@ -101,122 +118,129 @@ export function Sidebar() {
 
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-30 backdrop-blur-sm md:hidden animate-fade-in"
+                    className="fixed inset-0 bg-black/60 z-30 backdrop-blur-sm md:hidden animate-fade-in"
                     onClick={() => setIsOpen(false)}
                 />
             )}
 
             <aside
                 className={clsx(
-                    "fixed inset-y-0 left-0 z-40 w-[250px] bg-sidebar border-r border-border-color transition-transform duration-300 ease-in-out h-screen overflow-hidden md:translate-x-0",
+                    "fixed inset-y-0 left-0 z-40 w-[240px] bg-sidebar border-r border-border-color transition-transform duration-300 ease-in-out h-screen overflow-hidden md:translate-x-0 flex flex-col",
                     isOpen ? 'translate-x-0' : '-translate-x-full'
                 )}
             >
-                <div className="flex flex-col h-full p-6">
+                <div className="flex flex-col h-full p-4 overflow-y-auto custom-scrollbar">
                     {/* Header */}
-                    <div className="flex flex-col items-center gap-4 mb-8">
+                    <div className="flex flex-col items-center gap-5 mb-6 flex-shrink-0">
                         {/* Avatar & Info */}
                         <div className="flex flex-col items-center gap-3 text-center">
-                            <div className="relative">
+                            <div className="relative group cursor-pointer">
                                 <div
-                                    className="h-20 w-20 rounded-full bg-cover bg-center ring-2 ring-border-color shadow-sm"
-                                    style={{ backgroundImage: "url('https://ui-avatars.com/api/?name=Sathish+Kumar&background=1c5cf2&color=fff&bold=true')" }}
+                                    className="h-20 w-20 rounded-full bg-cover bg-center ring-4 ring-border-color shadow-xl transition-all duration-300 group-hover:ring-primary/50"
+                                    style={{ backgroundImage: "url('https://ui-avatars.com/api/?name=Sathish+Kumar&background=3b82f6&color=fff&bold=true')" }}
                                 ></div>
-                                <span className="absolute bottom-0 right-1 h-4 w-4 rounded-full bg-sidebar border-2 border-sidebar flex items-center justify-center">
-                                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+                                <span className="absolute bottom-1 right-1 h-4 w-4 rounded-full bg-sidebar flex items-center justify-center">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                 </span>
                             </div>
 
-                            <div className="flex flex-col gap-1">
-                                <h1 className="text-lg font-bold leading-tight text-text-main">Sathishkumar R</h1>
-                                <p className="text-xs font-mono text-text-muted">Engineer</p>
+                            <div className="flex flex-col gap-0.5">
+                                <h1 className="text-lg font-bold leading-tight text-text-main tracking-tight font-sans">Sathishkumar R</h1>
+                                <p className="text-xs font-mono text-primary font-medium tracking-wide">ENGINEER</p>
                             </div>
                         </div>
 
                         {/* Status Badge */}
-                        <div className="flex flex-col items-center gap-2">
-                            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[10px] font-medium">
+                        <div className="flex flex-col items-center gap-2 w-full">
+                            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-hover border border-border-color shadow-sm group hover:border-primary/30 transition-all w-fit">
                                 <span className="relative flex h-1.5 w-1.5">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                                 </span>
-                                {profile?.status_text || 'Open to Work'}
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted group-hover:text-text-main transition-colors">
+                                    {profile?.status_text || 'Open to Work'}
+                                </span>
                             </div>
-
-                            {profile?.learning_text && (
-                                <div className="text-[10px] uppercase tracking-wider text-text-muted px-2 py-1 text-center leading-tight opacity-80">
-                                    {profile.learning_text}
-                                </div>
-                            )}
                         </div>
                     </div>
 
                     {/* Navigation */}
-                    <nav className="flex flex-col gap-1">
+                    <nav className="flex flex-col gap-1.5 flex-grow">
                         {navItems.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
                                 className={clsx(
-                                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors w-full text-left",
+                                    "relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 group overflow-hidden",
                                     activeSection === item.id
-                                        ? "bg-primary/10 text-primary shadow-sm shadow-primary/5"
-                                        : "text-text-muted hover:bg-primary/5 hover:text-text-main"
+                                        ? "bg-primary/10 text-primary"
+                                        : "text-text-muted hover:text-text-main hover:bg-white/5"
                                 )}
                             >
-                                <item.icon size={20} /> {item.label}
+                                <item.icon size={18} className={clsx("transition-transform duration-300 group-hover:scale-110", activeSection === item.id && "animate-pulse")} />
+                                <span className="text-sm font-semibold tracking-wide">{item.label}</span>
+
+                                {activeSection === item.id && (
+                                    <div className="absolute right-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-primary rounded-l-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                                )}
                             </button>
                         ))}
                     </nav>
 
-                    <div className="mt-auto"></div>
-
-                    {/* Action Block */}
-                    <div className="flex flex-col gap-4 mt-6">
+                    {/* Footer / Actions */}
+                    <div className="mt-auto pt-4 flex flex-col gap-3">
                         <a
                             href="/resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02] active:scale-95"
+                            className="flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-xs font-bold text-white shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] active:scale-95 hover:shadow-primary/40"
                         >
-                            <FileText size={20} /> Resume
+                            <FileText size={16} />
+                            <span className="tracking-wide">DOWNLOAD CV</span>
                         </a>
 
-                        <div className="flex justify-center gap-6 mb-2">
-                            <a href="https://github.com/SathishKumar5115" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Github size={20} /></a>
-                            <a href="https://www.linkedin.com/in/sathishkumar-r-981510246/" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Linkedin size={20} /></a>
-                            <a href="mailto:rsathishkumar1963@gmail.com" className="text-text-muted hover:text-primary transition-colors hover:scale-110 transform"><Mail size={20} /></a>
+                        {/* Socials Link Row */}
+                        <div className="flex justify-center gap-5 pb-2">
+                            <a href="https://github.com/SathishKumar5115" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors hover:scale-110"><Github size={18} /></a>
+                            <a href="https://www.linkedin.com/in/sathishkumar-r-981510246/" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors hover:scale-110"><Linkedin size={18} /></a>
                         </div>
-                    </div>
 
-                    {/* Footer */}
-                    <div className="flex flex-col gap-2 border-t border-border-color pt-6">
-                        <div className="flex items-center justify-center gap-2 mb-2">
+                        {/* Separator */}
+                        <div className="h-px w-full bg-border-color my-2"></div>
+
+                        {/* Systems Operational Badge */}
+                        <div className="flex items-center justify-center gap-2 py-1">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
-                            <span className="text-[10px] font-medium uppercase tracking-widest text-text-muted">Systems Operational</span>
+                            <span className="text-[9px] font-bold tracking-widest text-text-muted uppercase">SYSTEMS OPERATIONAL</span>
                         </div>
 
-                        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-card border border-border-color shadow-sm mb-3">
-                            <Users size={16} className="text-primary" />
-                            <div className="flex flex-col leading-none">
-                                <span className="text-sm font-bold text-text-main">
-                                    {visitorCount > 0 ? visitorCount.toLocaleString() : '...'}
-                                </span>
-                                <span className="text-[10px] font-medium text-text-muted">Visits</span>
+                        {/* Visits Card */}
+                        <div className="flex flex-col gap-1 p-2.5 rounded-lg bg-card border border-border-color shadow-sm">
+                            <div className="flex items-center gap-3">
+                                <div className="p-1.5 rounded-md bg-blue-500/10 text-blue-500">
+                                    <User size={14} />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-sm font-bold text-text-main leading-none">
+                                        {visitorCount > 0 ? visitorCount.toLocaleString() : '...'}
+                                    </span>
+                                    <span className="text-[9px] font-medium text-text-muted uppercase tracking-wider">Visits</span>
+                                </div>
                             </div>
                         </div>
 
-                        <button onClick={toggleTheme} className="flex items-center justify-between rounded-lg bg-card border border-border-color p-2 cursor-pointer hover:bg-primary/5 transition-colors group">
-                            <div className="flex items-center gap-2">
-                                {isLight ? <Sun size={20} className="text-yellow-500" /> : <Moon size={20} className="text-primary" />}
-                                <span className="text-xs font-medium text-text-muted group-hover:text-text-main transition-colors">{isLight ? 'Light Mode' : 'Dark Mode'}</span>
-                            </div>
-                            <div className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${!isLight ? 'bg-primary' : 'bg-slate-500'}`}>
-                                <span className={`${!isLight ? 'translate-x-5 bg-white' : 'translate-x-1 bg-white'} inline-block h-3.5 w-3.5 transform rounded-full transition-transform`}></span>
-                            </div>
+                        {/* Theme Toggle Button (Simple) */}
+                        <button
+                            onClick={toggleTheme}
+                            className="flex items-center justify-center gap-2 w-full p-2.5 rounded-lg bg-card border border-border-color hover:border-primary/50 hover:bg-card-hover transition-all group"
+                        >
+                            {getThemeIcon()}
+                            <span className="text-[10px] font-bold text-text-muted group-hover:text-text-main uppercase tracking-wider">
+                                {getThemeLabel()}
+                            </span>
                         </button>
                     </div>
                 </div>

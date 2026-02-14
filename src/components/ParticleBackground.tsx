@@ -59,8 +59,9 @@ export function ParticleBackground() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Check theme
-            const isLight = document.documentElement.classList.contains('light');
-            const particleColor = isLight ? 'rgba(100, 116, 139, 0.2)' : 'rgba(255, 255, 255, 0.2)';
+            const theme = document.documentElement.getAttribute('data-theme');
+            const isLight = theme === 'light';
+            const particleColor = isLight ? 'rgba(71, 85, 105, 0.3)' : 'rgba(255, 255, 255, 0.3)';
 
             // Update and draw particles
             particles.forEach((particle) => {
@@ -76,7 +77,8 @@ export function ParticleBackground() {
 
         const connectParticles = (isLight: boolean) => {
             const maxDistance = 100;
-            const baseColor = isLight ? '100, 116, 139' : '255, 255, 255';
+            // Use Slate-600 for light, White for dark
+            const baseColor = isLight ? '71, 85, 105' : '255, 255, 255';
 
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i; j < particles.length; j++) {

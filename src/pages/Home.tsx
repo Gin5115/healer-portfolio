@@ -6,10 +6,11 @@ export function Home() {
             {/* Hero Section */}
             <div className="flex flex-col gap-6 max-w-3xl">
                 <h1 className="text-5xl font-black tracking-tight text-text-main sm:text-6xl lg:text-7xl">
-                    Building Intelligent Systems with <span className="text-primary">Code & Data</span>.
+                    Engineering <span className="text-primary">Intelligent Systems</span> with Code & Data.
                 </h1>
                 <p className="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
-                    Hi, I'm <span className="text-text-main font-semibold">Sathishkumar</span>. I am a Full Stack Engineer and AI Practitioner building scalable solutions.
+                    Hi, I'm <span className="text-text-main font-semibold">Sathishkumar</span>. I solve complex problems through <span className="text-primary font-bold">E4</span>:
+                    <br /><span className="italic">Effective, Efficient, Excellent Engineering.</span>
                 </p>
 
                 <div className="flex gap-4 justify-center mt-4">
@@ -27,24 +28,24 @@ export function Home() {
                     </button>
                 </div>
 
-                <div className="flex justify-center gap-6 mt-2">
+                <div className="flex justify-center gap-6 mt-8">
                     <a
                         href="https://github.com/SathishKumar5115"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-white transition-transform hover:scale-110"
+                        className="text-text-muted hover:text-primary transition-all hover:scale-110 p-2"
                         title="GitHub"
                     >
-                        <Github size={28} />
+                        <Github size={32} />
                     </a>
                     <a
                         href="https://www.linkedin.com/in/sathishkumar-r-981510246/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-white transition-transform hover:scale-110"
+                        className="text-text-muted hover:text-primary transition-all hover:scale-110 p-2"
                         title="LinkedIn"
                     >
-                        <Linkedin size={28} />
+                        <Linkedin size={32} />
                     </a>
                 </div>
             </div>

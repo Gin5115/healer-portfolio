@@ -50,11 +50,11 @@ export function TechStack() {
                         <h4 className="text-sm font-bold uppercase tracking-wider text-text-muted text-left">{section.category}</h4>
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                             {section.tools.map((tool, tIdx) => (
-                                <div key={tIdx} className="flex items-center gap-3 rounded-lg border border-border-color bg-card p-3 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-slate-100/5 p-1">
+                                <div key={tIdx} className="flex items-center gap-3 rounded-lg border border-border-color bg-card p-3 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:bg-card-hover group">
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-primary/5 p-1 group-hover:bg-primary/10 transition-colors">
                                         <img src={tool.icon} alt={tool.name} className="h-full w-full object-contain" />
                                     </div>
-                                    <span className="text-sm font-semibold text-text-main">{tool.name}</span>
+                                    <span className="text-sm font-semibold text-text-main group-hover:text-primary transition-colors">{tool.name}</span>
                                 </div>
                             ))}
                         </div>

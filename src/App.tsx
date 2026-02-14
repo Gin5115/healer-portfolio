@@ -2,7 +2,8 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { About } from './pages/About';
-import { Achievements } from './pages/Achievements';
+import { Background } from './pages/Background';
+import { Recognitions } from './pages/Recognitions';
 import { Contact } from './pages/Contact';
 import { SectionWrapper } from './components/ui/SectionWrapper';
 
@@ -17,12 +18,16 @@ function App() {
         <About />
       </SectionWrapper>
 
+      <SectionWrapper id="background">
+        <Background />
+      </SectionWrapper>
+
       <SectionWrapper id="projects">
         <Projects />
       </SectionWrapper>
 
-      <SectionWrapper id="achievements">
-        <Achievements />
+      <SectionWrapper id="recognitions">
+        <Recognitions />
       </SectionWrapper>
 
       <SectionWrapper id="contact">

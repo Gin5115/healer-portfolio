@@ -14,7 +14,7 @@ interface Achievement {
     image_url: string;
 }
 
-export function Achievements() {
+export function Recognitions() {
     const [achievements, setAchievements] = useState<Achievement[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedItem, setSelectedItem] = useState<DetailData | null>(null);
@@ -57,37 +57,37 @@ export function Achievements() {
                 proofUrl: item.image_url,
                 tags: [item.category]
             })}
-            className="group flex flex-col gap-3 rounded-lg border border-border-color bg-card p-5 cursor-pointer hover:border-primary/50 hover:shadow-md transition-all sm:hover:translate-y-[-2px]"
+            className="group flex flex-col gap-3 rounded-lg border border-border-color bg-[var(--bg-project-card)] backdrop-blur-md p-5 cursor-pointer hover:border-primary/50 hover:shadow-lg hover:bg-card-hover transition-all duration-300 sm:hover:-translate-y-1"
         >
             <div className="flex justify-between items-start">
                 <div className="flex flex-col gap-1">
-                    <h4 className="text-base font-bold text-text-main leading-tight group-hover:text-primary transition-colors">
+                    <h4 className="text-base font-bold text-text-main leading-tight group-hover:text-primary transition-colors pr-2">
                         {item.title}
                     </h4>
-                    <span className="text-xs font-medium text-text-muted">{item.issuer}</span>
+                    <span className="text-xs font-mono text-text-muted">{item.issuer}</span>
                 </div>
                 {item.category.toLowerCase().includes('hackathon') && (
-                    <span className="text-[10px] font-bold px-2 py-1 rounded bg-blue-500/10 text-blue-500 border border-blue-500/20 whitespace-nowrap">
+                    <span className="text-[10px] font-bold px-2 py-1 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 whitespace-nowrap">
                         Hackathon
                     </span>
                 )}
                 {item.category.toLowerCase().includes('certificat') && (
-                    <span className="text-[10px] font-bold px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 whitespace-nowrap">
+                    <span className="text-[10px] font-bold px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 whitespace-nowrap">
                         Certification
                     </span>
                 )}
                 {!item.category.toLowerCase().includes('hackathon') && !item.category.toLowerCase().includes('certificat') && (
-                    <span className="text-[10px] font-bold px-2 py-1 rounded bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 whitespace-nowrap">
+                    <span className="text-[10px] font-bold px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 whitespace-nowrap">
                         Award
                     </span>
                 )}
             </div>
 
-            <div className="mt-auto pt-2 text-sm font-bold text-primary hover:text-blue-400 transition-colors inline-flex items-center gap-1">
-                View Details <ArrowRight size={14} />
+            <div className="mt-auto pt-4 text-xs font-bold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1 uppercase tracking-wider">
+                Details <ArrowRight size={14} />
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-text-muted pt-2 border-t border-border-color/50 mt-2">
+            <div className="flex items-center gap-2 text-xs text-text-muted pt-3 border-t border-border-color/30 mt-2 font-mono">
                 {icon}
                 <span>{item.date}</span>
             </div>
@@ -95,19 +95,22 @@ export function Achievements() {
     );
 
     if (loading) {
-        return <div className="text-text-main text-center py-12">Loading hall of fame...</div>;
+        return <div className="text-text-main text-center py-12 animate-pulse">Loading recognitions...</div>;
     }
 
     return (
         <div className="max-w-4xl mx-auto w-full flex flex-col gap-12 pb-12">
             {/* Header */}
             <div className="flex flex-col gap-4 border-b border-border-color pb-8">
-                <h2 className="text-3xl font-black text-text-main sm:text-4xl flex items-center gap-3">
-                    <Trophy className="text-primary" size={32} />
-                    Hall of Fame
+                <div className="flex items-center gap-2 text-primary mb-2">
+                    <Trophy size={20} />
+                    <span className="font-mono text-sm font-bold tracking-wider">// RECOGNITIONS</span>
+                </div>
+                <h2 className="text-3xl font-black text-text-main sm:text-4xl">
+                    Recognitions
                 </h2>
                 <p className="text-lg leading-relaxed text-text-muted">
-                    Recognitions, Hackathon wins, and Certifications that validate my expertise.
+                    Honors, Hackathon wins, and Certifications that validate my expertise.
                 </p>
             </div>
 
@@ -151,8 +154,8 @@ export function Achievements() {
             )}
 
             {achievements.length === 0 && (
-                <div className="text-center text-text-muted py-12">
-                    No achievements found yet.
+                <div className="text-center text-text-muted py-12 border border-dashed border-border-color rounded-lg bg-card/50">
+                    No recognitions found.
                 </div>
             )}
 
