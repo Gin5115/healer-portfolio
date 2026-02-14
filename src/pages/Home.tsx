@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Github, Linkedin } from 'lucide-react';
 
 export function Home() {
@@ -14,18 +13,18 @@ export function Home() {
                 </p>
 
                 <div className="flex gap-4 justify-center mt-4">
-                    <Link
-                        to="/projects"
+                    <button
+                        onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                         className="rounded-lg bg-primary px-8 py-3 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-105 active:scale-95"
                     >
                         View Projects
-                    </Link>
-                    <Link
-                        to="/about"
+                    </button>
+                    <button
+                        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
                         className="rounded-lg border border-border-color bg-card px-8 py-3 text-sm font-bold text-text-main transition-colors hover:bg-slate-800/50 hover:border-primary"
                     >
                         About Me
-                    </Link>
+                    </button>
                 </div>
 
                 <div className="flex justify-center gap-6 mt-2">

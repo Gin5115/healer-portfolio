@@ -23,6 +23,10 @@
   --border-color: #e2e8f0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-content);
   color: var(--text-main);

@@ -1,24 +1,38 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DashboardLayout } from './layouts/DashboardLayout';
 import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { About } from './pages/About';
 import { Achievements } from './pages/Achievements';
 import { Contact } from './pages/Contact';
+import { SectionWrapper } from './components/ui/SectionWrapper';
 
 function App() {
   return (
-    <BrowserRouter>
-      <DashboardLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/achievements" element={<Achievements />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </DashboardLayout>
-    </BrowserRouter>
+    <DashboardLayout>
+      <SectionWrapper id="home" className="min-h-screen flex items-center justify-center">
+        <Home />
+      </SectionWrapper>
+
+      <SectionWrapper id="about">
+        <About />
+      </SectionWrapper>
+
+      <SectionWrapper id="projects">
+        <Projects />
+      </SectionWrapper>
+
+      <SectionWrapper id="achievements">
+        <Achievements />
+      </SectionWrapper>
+
+      <SectionWrapper id="contact">
+        <Contact />
+      </SectionWrapper>
+
+      <footer className="py-6 text-center text-xs text-text-muted border-t border-border-color mt-20">
+        <p>&copy; {new Date().getFullYear()} Sathishkumar R. Built with React & Tailwind.</p>
+      </footer>
+    </DashboardLayout>
   );
 }
 
